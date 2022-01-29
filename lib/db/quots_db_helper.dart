@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'package:flutter/widgets.dart';
 import 'package:path/path.dart';
 import 'dart:typed_data';
 import 'package:flutter/services.dart';
@@ -9,7 +8,7 @@ class DBHelper {
   late Database db;
   List category = [];
   List quotes = [];
-  //
+
   Future databaseGet() async {
     var databasePath = await getDatabasesPath();
 
@@ -34,7 +33,9 @@ class DBHelper {
       var db = await openDatabase(path);
 
       category = await db.query('category');
+      quotes = await db.query('quotes');
       print(category);
+      print(quotes);
     }
   }
 //

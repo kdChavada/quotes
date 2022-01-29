@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:quotes/db/quots_db_helper.dart';
 import 'package:quotes/view/welcome.dart';
-
+DBHelper dbHelper = DBHelper();
 void main() {
   runApp(const MyApp());
 }
