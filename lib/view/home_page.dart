@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:quotes/view/daily_quote.dart';
+import 'package:quotes/view/faqs.dart';
+import 'package:quotes/view/like_quotes.dart';
+import 'package:quotes/view/privicy_policy.dart';
 
 import 'package:quotes/view/quotes_view.dart';
 
@@ -72,8 +75,7 @@ class _HomePageState extends State<HomePage> {
                 );
               },
               child: Card(
-                elevation: 5.0,
-                shadowColor: Colors.red,
+                elevation: 2.0,
                 child: Center(
                   child: SizedBox(
                     height: 110,
@@ -116,7 +118,9 @@ class _HomePageState extends State<HomePage> {
               ),
               child: Column(
                 children: [
-
+                  const SizedBox(
+                    height: 20,
+                  ),
                   SizedBox(
                     height: 80,
                     width: 80,
@@ -136,36 +140,51 @@ class _HomePageState extends State<HomePage> {
               height: 30.0,
             ),
             //Like Quote
-            Container(
-              margin: const EdgeInsets.only(left: 15, right: 15),
-              width: w,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  border: Border.all(
-                    color: Colors.pink,
-                  )),
-              child: Row(
-                children: [
-                  const SizedBox(
-                    width: 10.0,
-                  ),
-                  const Icon(
-                    CupertinoIcons.heart_fill,
-                    color: Colors.red,
-                  ),
-                  const SizedBox(
-                    width: 15.0,
-                  ),
-                  Text(
-                    "Liked Quotes",
-                    style: GoogleFonts.concertOne(
-                      color: Colors.black,
-                      fontSize: 16.0,
+            GestureDetector(
+              onTap: () {
+                Navigator.pop(context);
+
+                Navigator.push(
+                  context,
+                  PageTransition(
+                      duration: const Duration(seconds: 2),
+                      curve: Curves.bounceIn,
+                      type: PageTransitionType.scale,
+                      alignment: Alignment.topCenter,
+                      child: const LikeQuotes()),
+                );
+              },
+              child: Container(
+                margin: const EdgeInsets.only(left: 15, right: 15),
+                width: w,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(
+                      color: Colors.pink,
+                    )),
+                child: Row(
+                  children: [
+                    const SizedBox(
+                      width: 10.0,
                     ),
-                  ),
-                ],
+                    const Icon(
+                      CupertinoIcons.heart_fill,
+                      color: Colors.red,
+                    ),
+                    const SizedBox(
+                      width: 15.0,
+                    ),
+                    Text(
+                      "Liked Quotes",
+                      style: GoogleFonts.concertOne(
+                        color: Colors.black,
+                        fontSize: 16.0,
+                      ),
+                    ),
+                  ],
+                ),
+                height: 50,
               ),
-              height: 50,
             ),
             const SizedBox(
               height: 15.0,
@@ -177,7 +196,7 @@ class _HomePageState extends State<HomePage> {
                 Navigator.push(
                   context,
                   PageTransition(
-                      duration: const Duration(seconds: 1),
+                      duration: const Duration(seconds: 2),
                       curve: Curves.bounceIn,
                       type: PageTransitionType.scale,
                       alignment: Alignment.topCenter,
@@ -264,65 +283,95 @@ class _HomePageState extends State<HomePage> {
             const SizedBox(
               height: 15.0,
             ),
-            Container(
-              margin: const EdgeInsets.only(left: 15, right: 15),
-              width: w,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  border: Border.all(
-                    color: Colors.pink,
-                  )),
-              child: Row(
-                children: [
-                  const SizedBox(
-                    width: 10.0,
-                  ),
-                  const Icon(CupertinoIcons.square_favorites),
-                  const SizedBox(
-                    width: 15.0,
-                  ),
-                  Text(
-                    "FAQs",
-                    style: GoogleFonts.concertOne(
-                      color: Colors.black,
-                      fontSize: 16.0,
+            GestureDetector(
+              onTap: () {
+                Navigator.pop(context);
+
+                Navigator.push(
+                  context,
+                  PageTransition(
+                      duration: const Duration(seconds: 2),
+                      curve: Curves.bounceIn,
+                      type: PageTransitionType.scale,
+                      alignment: Alignment.topCenter,
+                      child: const FaqS()),
+                );
+              },
+              child: Container(
+                margin: const EdgeInsets.only(left: 15, right: 15),
+                width: w,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(
+                      color: Colors.pink,
+                    )),
+                child: Row(
+                  children: [
+                    const SizedBox(
+                      width: 10.0,
                     ),
-                  ),
-                ],
+                    const Icon(CupertinoIcons.square_favorites),
+                    const SizedBox(
+                      width: 15.0,
+                    ),
+                    Text(
+                      "FAQs",
+                      style: GoogleFonts.concertOne(
+                        color: Colors.black,
+                        fontSize: 16.0,
+                      ),
+                    ),
+                  ],
+                ),
+                height: 50,
               ),
-              height: 50,
             ),
             //Privacy  Policy
             const SizedBox(
               height: 15.0,
             ),
-            Container(
-              margin: const EdgeInsets.only(left: 15, right: 15),
-              width: w,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  border: Border.all(
-                    color: Colors.pink,
-                  )),
-              child: Row(
-                children: [
-                  const SizedBox(
-                    width: 10.0,
-                  ),
-                  const Icon(CupertinoIcons.doc),
-                  const SizedBox(
-                    width: 15.0,
-                  ),
-                  Text(
-                    "Privacy Policy",
-                    style: GoogleFonts.concertOne(
-                      color: Colors.black,
-                      fontSize: 16.0,
+            GestureDetector(
+              onTap: () {
+                Navigator.pop(context);
+
+                Navigator.push(
+                  context,
+                  PageTransition(
+                      duration: const Duration(seconds: 2),
+                      curve: Curves.bounceIn,
+                      type: PageTransitionType.scale,
+                      alignment: Alignment.topCenter,
+                      child: const PrivacyPolicy()),
+                );
+              },
+              child: Container(
+                margin: const EdgeInsets.only(left: 15, right: 15),
+                width: w,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(
+                      color: Colors.pink,
+                    )),
+                child: Row(
+                  children: [
+                    const SizedBox(
+                      width: 10.0,
                     ),
-                  ),
-                ],
+                    const Icon(CupertinoIcons.doc),
+                    const SizedBox(
+                      width: 15.0,
+                    ),
+                    Text(
+                      "Privacy Policy",
+                      style: GoogleFonts.concertOne(
+                        color: Colors.black,
+                        fontSize: 16.0,
+                      ),
+                    ),
+                  ],
+                ),
+                height: 50,
               ),
-              height: 50,
             ),
             //Contact us
             const SizedBox(

@@ -134,21 +134,17 @@ class _ViewQuotesState extends State<ViewQuotes> {
                                           ),
                                           GestureDetector(
                                             onTap: () {
-                                              Future<void>
-                                                  _copyToClipboard() async {
-                                                await Clipboard.setData(
-                                                    ClipboardData(
-                                                        text: quotes[v]
-                                                            ['quote']));
-                                                _scaffoldKey.currentState
-                                                    ?.showSnackBar(
-                                                  const SnackBar(
-                                                    content: Text('Copied'),
-                                                  ),
-                                                );
-                                              }
+                                              Clipboard.setData(ClipboardData(
+                                                  text: quotes[v]['quote']));
 
-                                              _copyToClipboard();
+                                              ScaffoldMessenger.of(context)
+                                                  .showSnackBar(
+                                                const SnackBar(
+                                                  content: Text("Copied"),
+                                                  duration: Duration(
+                                                      milliseconds: 300),
+                                                ),
+                                              );
                                             },
                                             child: Row(
                                               children: [
