@@ -21,6 +21,32 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
           style: GoogleFonts.satisfy(
               color: Colors.black, fontWeight: FontWeight.w700),
         ),
+        leading: GestureDetector(
+            onTap: () {
+              Navigator.pop(context);
+            },
+            child: const Icon(
+              Icons.arrow_back_ios,
+              color: Colors.black,
+              size: 30,
+            )),
+      ),
+      body: SingleChildScrollView(
+        child: Container(
+          margin: const EdgeInsets.only(left: 10, right: 10, top: 10),
+          child: Column(
+            children: [
+              Text(
+                "Send Quotes Any ware",
+                style: GoogleFonts.changa(
+                  color: Colors.black,
+                  fontSize: 18.0,
+                ),
+                textAlign: TextAlign.justify,
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }

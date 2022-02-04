@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:quotes/view/about_app.dart';
 import 'package:quotes/view/daily_quote.dart';
 import 'package:quotes/view/faqs.dart';
 import 'package:quotes/view/like_quotes.dart';
@@ -10,6 +11,7 @@ import 'package:quotes/view/privicy_policy.dart';
 import 'package:quotes/view/quotes_view.dart';
 
 import '../main.dart';
+import 'notification_service.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -272,6 +274,7 @@ class _HomePageState extends State<HomePage> {
                           value: isNotification.value,
                           onChanged: (v) {
                             isNotification.value = v;
+                            NotificationService();
                           },
                         );
                       })
@@ -377,33 +380,48 @@ class _HomePageState extends State<HomePage> {
             const SizedBox(
               height: 15.0,
             ),
-            Container(
-              margin: const EdgeInsets.only(left: 15, right: 15),
-              width: w,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  border: Border.all(
-                    color: Colors.pink,
-                  )),
-              child: Row(
-                children: [
-                  const SizedBox(
-                    width: 10.0,
-                  ),
-                  const Icon(Icons.phone_android),
-                  const SizedBox(
-                    width: 15.0,
-                  ),
-                  Text(
-                    "Contact",
-                    style: GoogleFonts.concertOne(
-                      color: Colors.black,
-                      fontSize: 16.0,
+            GestureDetector(
+              onTap: (){
+                Navigator.pop(context);
+
+                Navigator.push(
+                  context,
+                  PageTransition(
+                      duration: const Duration(seconds: 2),
+                      curve: Curves.bounceIn,
+                      type: PageTransitionType.scale,
+                      alignment: Alignment.topCenter,
+                      child: const AboutApp()),
+                );
+              },
+              child: Container(
+                margin: const EdgeInsets.only(left: 15, right: 15),
+                width: w,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(
+                      color: Colors.pink,
+                    )),
+                child: Row(
+                  children: [
+                    const SizedBox(
+                      width: 10.0,
                     ),
-                  ),
-                ],
+                    const Icon(Icons.info_outline),
+                    const SizedBox(
+                      width: 15.0,
+                    ),
+                    Text(
+                      "About App",
+                      style: GoogleFonts.concertOne(
+                        color: Colors.black,
+                        fontSize: 16.0,
+                      ),
+                    ),
+                  ],
+                ),
+                height: 50,
               ),
-              height: 50,
             ),
             //Share App
             const SizedBox(

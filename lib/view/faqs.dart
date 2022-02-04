@@ -21,6 +21,15 @@ class _FaqSState extends State<FaqS> {
           style: GoogleFonts.satisfy(
               color: Colors.black, fontWeight: FontWeight.w700),
         ),
+        leading: GestureDetector(
+            onTap: () {
+              Navigator.pop(context);
+            },
+            child: const Icon(
+              Icons.arrow_back_ios,
+              color: Colors.black,
+              size: 30,
+            )),
       ),
     );
   }

@@ -1,6 +1,7 @@
 import 'dart:io';
 
-import 'package:flutter/widgets.dart';
+
+import 'package:flutter/foundation.dart';
 import 'package:path/path.dart';
 import 'dart:typed_data';
 import 'package:flutter/services.dart';
@@ -12,7 +13,8 @@ class DBHelper{
   late Database db;
   List category = [];
   List quotes = [];
-
+  ValueNotifier<List<Map>> bookmarkList=ValueNotifier([]);
+  List likesQuotes = [];
 
 
   Future databaseGet()async{
@@ -40,14 +42,40 @@ class DBHelper{
 
     } else {
     }
-// open the database
+      // open the database
     var db = await openDatabase(path);
 
     category =await db.query('category');
     quotes =await db.query('quotes');
+    likesQuotes =  await db.query('like');
+
+    print(likesQuotes.length);
+
+
+
 
 
   }
+  void  insertDataIntoDB(int id,String quote)async{
+    var databasesPath = await getDatabasesPath();
+    var path = join(databasesPath, "quotes.db");
+    var db = await openDatabase(path);
+
+
+    Map<String,dynamic> value={
+      '_id':id,
+      'quote':quote,
+
+    };
+    await db.insert("like",value);
+    bookmarkList.value=await db.query("like");
+
+    print(bookmarkList.value);
+  }
+
+
+
+
 
 }
 

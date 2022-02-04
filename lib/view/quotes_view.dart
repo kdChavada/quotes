@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import 'package:quotes/main.dart';
 import 'package:share_plus/share_plus.dart';
 
@@ -28,6 +27,8 @@ class _ViewQuotesState extends State<ViewQuotes> {
     }
     setState(() {});
   }
+
+  ValueNotifier<bool> likeQuotes = ValueNotifier(false);
 
   List quotes = [];
 
@@ -113,30 +114,55 @@ class _ViewQuotesState extends State<ViewQuotes> {
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
                                         children: [
-                                          GestureDetector(
-                                            onTap: () {},
-                                            child: Row(
-                                              children: [
-                                                const Icon(
-                                                    CupertinoIcons.heart),
-                                                const SizedBox(
-                                                  width: 10,
-                                                ),
-                                                Text(
-                                                  "Like",
-                                                  style: GoogleFonts.changa(
-                                                    color: Colors.black,
-                                                    fontSize: 18.0,
+                                          ValueListenableBuilder(
+                                              valueListenable: likeQuotes,
+                                              builder: (context, a, c) {
+                                                return  likeQuotes.value ==  true ? Row(
+                                                  children: [
+                                                    const Icon(
+                                                        CupertinoIcons.heart_fill,color: Colors.pink,),
+                                                    const SizedBox(
+                                                      width: 10,
+                                                    ),
+                                                    Text(
+                                                      "Like",
+                                                      style:
+                                                      GoogleFonts.changa(
+                                                        color: Colors.black,
+                                                        fontSize: 18.0,
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ) : GestureDetector(
+                                                  onTap: () {
+                                     likeQuotes.value =  true;
+                                                    dbHelper.insertDataIntoDB(
+                                                        quotes[v]['_id'],
+                                                        quotes[v]['quote']);
+                                                  },
+                                                  child: Row(
+                                                    children: [
+                                                      const Icon(
+                                                          CupertinoIcons.heart),
+                                                      const SizedBox(
+                                                        width: 10,
+                                                      ),
+                                                      Text(
+                                                        "Like",
+                                                        style:
+                                                            GoogleFonts.changa(
+                                                          color: Colors.black,
+                                                          fontSize: 18.0,
+                                                        ),
+                                                      ),
+                                                    ],
                                                   ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
+                                                );
+                                              }),
                                           GestureDetector(
                                             onTap: () {
                                               Clipboard.setData(ClipboardData(
                                                   text: quotes[v]['quote']));
-
                                               ScaffoldMessenger.of(context)
                                                   .showSnackBar(
                                                 const SnackBar(
